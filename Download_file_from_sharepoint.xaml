@@ -8,7 +8,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>653.6,736.8</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>653.6,696.8</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="24">
@@ -68,6 +68,7 @@
   <Flowchart DisplayName="Download" sap:VirtualizedContainerService.HintSize="633.6,636.8" sap2010:WorkflowViewState.IdRef="Flowchart_1">
     <Flowchart.Variables>
       <Variable x:TypeArguments="ui:GenericValue" Name="application_id" />
+      <Variable x:TypeArguments="x:String" Default="hooray_sharepoint_application_id" Name="asset_name_sharepoint_application_id" />
     </Flowchart.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -87,13 +88,13 @@
           <av:Size x:Key="ShapeSize">200,52.8</av:Size>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <uma:Office365ApplicationScope Password="{x:Null}" Tenant="{x:Null}" Timeout="{x:Null}" Username="{x:Null}" ApplicationId="[application_id]" AuthenticationType="InteractiveToken" DisplayName="Download from sharepoint" sap:VirtualizedContainerService.HintSize="433.6,1059.2" sap2010:WorkflowViewState.IdRef="Office365ApplicationScope_1" Services="Files">
+      <uma:Office365ApplicationScope Password="{x:Null}" Tenant="{x:Null}" Timeout="{x:Null}" Username="{x:Null}" ApplicationId="[application_id]" AuthenticationType="InteractiveToken" DisplayName="Download from sharepoint" sap:VirtualizedContainerService.HintSize="600,1532" sap2010:WorkflowViewState.IdRef="Office365ApplicationScope_1" Services="Files">
         <uma:Office365ApplicationScope.Body>
           <ActivityAction x:TypeArguments="mg:GraphServiceClient">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="mg:GraphServiceClient" Name="ParentScope" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="375.2,972.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="566.4,1445.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
               <Sequence.Variables>
                 <Variable x:TypeArguments="mg:DriveItem[]" Name="all_files" />
                 <Variable x:TypeArguments="sd:DataTable" Name="dt_employee_all" />
@@ -107,9 +108,25 @@
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="333.6,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;Downloading &quot; + query_string + &quot; from Sharepoint&quot;]" />
-              <umaf:FindFilesAndFolders DriveName="{x:Null}" First="{x:Null}" SiteUrl="{x:Null}" DisplayName="Find Files And Folders" sap:VirtualizedContainerService.HintSize="333.6,62.4" sap2010:WorkflowViewState.IdRef="FindFilesAndFolders_1" Query="[query_string]" Results="[all_files]" />
-              <ui:ForEach x:TypeArguments="mg:DriveItem" CurrentIndex="{x:Null}" DisplayName="Processing Each Found Files" sap:VirtualizedContainerService.HintSize="333.6,372.8" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[all_files]">
+              <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="524.8,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[&quot;Downloading &quot; + query_string + &quot; from Sharepoint&quot;]" />
+              <Sequence DisplayName="Create Download Folder If Not Exist" sap:VirtualizedContainerService.HintSize="524.8,432.8" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:Boolean" Name="exist_flag" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:PathExists DisplayName="Path Exists" Exists="[exist_flag]" sap:VirtualizedContainerService.HintSize="483.2,90.4" sap2010:WorkflowViewState.IdRef="PathExists_1" Path="[saved_file_path_full]" PathType="Folder" />
+                <If Condition="[Not exist_flag]" sap:VirtualizedContainerService.HintSize="483.2,209.6" sap2010:WorkflowViewState.IdRef="If_3">
+                  <If.Then>
+                    <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Directory" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="[saved_file_path_full]" />
+                  </If.Then>
+                </If>
+              </Sequence>
+              <umaf:FindFilesAndFolders DriveName="{x:Null}" First="{x:Null}" SiteUrl="{x:Null}" DisplayName="Find Files And Folders" sap:VirtualizedContainerService.HintSize="524.8,62.4" sap2010:WorkflowViewState.IdRef="FindFilesAndFolders_1" Query="[query_string]" Results="[all_files]" />
+              <ui:ForEach x:TypeArguments="mg:DriveItem" CurrentIndex="{x:Null}" DisplayName="Processing Each Found Files" sap:VirtualizedContainerService.HintSize="524.8,372.8" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[all_files]">
                 <ui:ForEach.Body>
                   <ActivityAction x:TypeArguments="mg:DriveItem">
                     <ActivityAction.Argument>
@@ -166,13 +183,13 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                         <If.Then>
-                          <Sequence sap:VirtualizedContainerService.HintSize="265.6,247.2" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                          <Sequence sap:VirtualizedContainerService.HintSize="304,215.2" sap2010:WorkflowViewState.IdRef="Sequence_4">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <Assign sap:VirtualizedContainerService.HintSize="243.2,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                            <Assign sap:VirtualizedContainerService.HintSize="262.4,60" sap2010:WorkflowViewState.IdRef="Assign_3">
                               <Assign.To>
                                 <OutArgument x:TypeArguments="mg:DriveItem">[found_file]</OutArgument>
                               </Assign.To>
@@ -180,7 +197,7 @@
                                 <InArgument x:TypeArguments="mg:DriveItem">[this_file]</InArgument>
                               </Assign.Value>
                             </Assign>
-                            <ui:Continue sap:VirtualizedContainerService.HintSize="243.2,22.4" sap2010:WorkflowViewState.IdRef="Continue_1" />
+                            <ui:Continue sap:VirtualizedContainerService.HintSize="262.4,22.4" sap2010:WorkflowViewState.IdRef="Continue_1" />
                           </Sequence>
                         </If.Then>
                       </If>
@@ -188,8 +205,8 @@
                   </ActivityAction>
                 </ui:ForEach.Body>
               </ui:ForEach>
-              <umaf:DownloadFile DisplayName="Download File" File="[found_file]" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="DownloadFile_1" LocalFilePath="[saved_file_path_full]" />
-              <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+              <umaf:DownloadFile DisplayName="Download File" File="[found_file]" sap:VirtualizedContainerService.HintSize="524.8,60" sap2010:WorkflowViewState.IdRef="DownloadFile_1" LocalFilePath="[saved_file_path_full]" />
+              <Assign sap:VirtualizedContainerService.HintSize="524.8,60" sap2010:WorkflowViewState.IdRef="Assign_4">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[file_name]</OutArgument>
                 </Assign.To>
@@ -197,7 +214,7 @@
                   <InArgument x:TypeArguments="x:String">[saved_file_path_full + "\" + found_file.Name]</InArgument>
                 </Assign.Value>
               </Assign>
-              <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="333.6,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;Downloaded file -&gt; &quot; + file_name]" />
+              <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="524.8,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[&quot;Downloaded file -&gt; &quot; + file_name]" />
             </Sequence>
           </ActivityAction>
         </uma:Office365ApplicationScope.Body>
@@ -216,7 +233,7 @@
           <av:PointCollection x:Key="ConnectorLocation">300,151.4 300,213.6</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="hooray_sharepoint_application_id" DisplayName="Get Asset" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+      <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="[asset_name_sharepoint_application_id]" DisplayName="Get Asset" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
         <ui:GetRobotAsset.Value>
           <OutArgument x:TypeArguments="ui:GenericValue">[application_id]</OutArgument>
         </ui:GetRobotAsset.Value>

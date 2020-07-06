@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="368,1064" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="368,871.2" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -55,31 +55,15 @@
       <AssemblyReference>UiPath.Python</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main" sap:VirtualizedContainerService.HintSize="348,1004" sap2010:WorkflowViewState.IdRef="Sequence_46">
+  <Sequence DisplayName="Main" sap:VirtualizedContainerService.HintSize="348,811.2" sap2010:WorkflowViewState.IdRef="Sequence_46">
     <Sequence.Variables>
-      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Default="[new dictionary(Of string, string)()]" Name="dict_slack_for_region" />
+      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Default="[new dictionary(Of string, string) from {{&quot;Asean&quot;, &quot;robot_integration_test&quot;}}]" Name="dict_slack_for_region" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence DisplayName="Instantiate Dictionary for Regions Based on Input Parameter" sap:VirtualizedContainerService.HintSize="306.4,152.8" sap2010:WorkflowViewState.IdRef="Sequence_47">
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <Assign sap:VirtualizedContainerService.HintSize="262.4,60" sap2010:WorkflowViewState.IdRef="Assign_43">
-        <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[dict_slack_for_region("Asean")]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="x:String">robot_integration_test</InArgument>
-        </Assign.Value>
-      </Assign>
-    </Sequence>
     <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="Processing Each Region" sap:VirtualizedContainerService.HintSize="306.4,718.4" sap2010:WorkflowViewState.IdRef="ForEach`1_5" Values="[dict_slack_for_region.Keys]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="x:String">
@@ -92,7 +76,7 @@
               <Variable x:TypeArguments="x:Int32" Name="today_day" />
               <Variable x:TypeArguments="x:Int32" Name="today_month" />
               <Variable x:TypeArguments="x:Int32" Name="today_year" />
-              <Variable x:TypeArguments="x:String" Default="robot_integration_test" Name="slack_channel" />
+              <Variable x:TypeArguments="x:String" Name="slack_channel" />
               <Variable x:TypeArguments="x:String" Default="wei.wang" Name="slack_acc_error_report" />
               <Variable x:TypeArguments="x:Int32" Name="holiday_reminder_day" />
               <Variable x:TypeArguments="x:Int32" Name="holiday_reminder_month" />
@@ -107,7 +91,7 @@
             </sap:WorkflowViewStateService.ViewState>
             <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="229.6,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_27" Text="#############################" />
             <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="229.6,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_26" Text="[&quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; &quot; + this_region +&quot; &lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&quot;]" />
-            <Sequence DisplayName="Get Date of today and holiday reminder day" sap:VirtualizedContainerService.HintSize="229.6,68.8" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <Sequence DisplayName="Init Variables" sap:VirtualizedContainerService.HintSize="229.6,68.8" sap2010:WorkflowViewState.IdRef="Sequence_4">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -165,13 +149,13 @@
               </Assign>
               <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="262.4,52.8" sap2010:WorkflowViewState.IdRef="CommentOut_3">
                 <ui:CommentOut.Body>
-                  <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="241.6,145.6" sap2010:WorkflowViewState.IdRef="Sequence_50">
+                  <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="326.4,161.6" sap2010:WorkflowViewState.IdRef="Sequence_50">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <Sequence DisplayName="test" sap:VirtualizedContainerService.HintSize="200,52.8" sap2010:WorkflowViewState.IdRef="Sequence_49">
+                    <Sequence DisplayName="test" sap:VirtualizedContainerService.HintSize="200,68.8" sap2010:WorkflowViewState.IdRef="Sequence_49">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -212,6 +196,14 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:CommentOut>
+              <Assign sap:VirtualizedContainerService.HintSize="262.4,60" sap2010:WorkflowViewState.IdRef="Assign_62">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[slack_channel]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[dict_slack_for_region(this_region)]</InArgument>
+                </Assign.Value>
+              </Assign>
             </Sequence>
             <Sequence DisplayName="Processing Public Holiday Reminder" sap:VirtualizedContainerService.HintSize="229.6,68.8" sap2010:WorkflowViewState.IdRef="Sequence_22">
               <Sequence.Variables>
@@ -227,15 +219,15 @@
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <While DisplayName="Process this year and next year" sap:VirtualizedContainerService.HintSize="705.6,1324.8" sap2010:WorkflowViewState.IdRef="While_1" Condition="[process_year &lt; today_year + 2]">
-                <Sequence DisplayName="Processing Each Year" sap:VirtualizedContainerService.HintSize="660.8,1165.6" sap2010:WorkflowViewState.IdRef="Sequence_45">
+              <While DisplayName="Process this year and next year" sap:VirtualizedContainerService.HintSize="523.2,975.2" sap2010:WorkflowViewState.IdRef="While_1" Condition="[process_year &lt; today_year + 2]">
+                <Sequence DisplayName="Processing Each Year" sap:VirtualizedContainerService.HintSize="478.4,816" sap2010:WorkflowViewState.IdRef="Sequence_45">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="619.2,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_16" Text="[&quot;########## Public Holiday &quot;+ process_year.ToString +&quot;#############&quot;]" />
-                  <Sequence DisplayName="Reset Variables" sap:VirtualizedContainerService.HintSize="619.2,68.8" sap2010:WorkflowViewState.IdRef="Sequence_48">
+                  <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="436.8,62.4" sap2010:WorkflowViewState.IdRef="WriteLine_16" Text="[&quot;########## Public Holiday &quot;+ process_year.ToString +&quot;#############&quot;]" />
+                  <Sequence DisplayName="Reset Variables" sap:VirtualizedContainerService.HintSize="436.8,68.8" sap2010:WorkflowViewState.IdRef="Sequence_48">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -269,10 +261,10 @@
                       </Assign.Value>
                     </Assign>
                   </Sequence>
-                  <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="619.2,52.8" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                  <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="436.8,319.2" sap2010:WorkflowViewState.IdRef="TryCatch_2">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
@@ -298,7 +290,7 @@
                           <ActivityAction.Argument>
                             <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                           </ActivityAction.Argument>
-                          <Sequence sap:VirtualizedContainerService.HintSize="643.2,289.6" sap2010:WorkflowViewState.IdRef="Sequence_62">
+                          <Sequence sap:VirtualizedContainerService.HintSize="375.2,289.6" sap2010:WorkflowViewState.IdRef="Sequence_62">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -366,7 +358,7 @@
                   <If Condition="[system.IO.File.Exists(excel_file_path_full)]" DisplayName="If Excel file exists" sap:VirtualizedContainerService.HintSize="619.2,668.8" sap2010:WorkflowViewState.IdRef="If_22">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                         <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
@@ -674,7 +666,7 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                         </ui:ExcelApplicationScope>
-                        <Sequence DisplayName="Send Slack Message" sap:VirtualizedContainerService.HintSize="433.6,68.8" sap2010:WorkflowViewState.IdRef="Sequence_43">
+                        <Sequence DisplayName="Send Slack Message" sap:VirtualizedContainerService.HintSize="601.6,990.4" sap2010:WorkflowViewState.IdRef="Sequence_43">
                           <Sequence.Variables>
                             <Variable x:TypeArguments="x:String" Name="temp_slack_file" />
                             <Variable x:TypeArguments="x:Boolean" Name="slack_file_exist_flag" />
@@ -743,7 +735,7 @@
                       </Sequence>
                     </If.Then>
                   </If>
-                  <Assign sap:VirtualizedContainerService.HintSize="619.2,60" sap2010:WorkflowViewState.IdRef="Assign_48">
+                  <Assign sap:VirtualizedContainerService.HintSize="436.8,60" sap2010:WorkflowViewState.IdRef="Assign_48">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:Int32">[process_year]</OutArgument>
                     </Assign.To>
@@ -754,7 +746,7 @@
                 </Sequence>
               </While>
             </Sequence>
-            <Sequence DisplayName="Processing Birthday &amp; Anniversary Reminder" sap:VirtualizedContainerService.HintSize="271.2,340.8" sap2010:WorkflowViewState.IdRef="Sequence_21">
+            <Sequence DisplayName="Processing Birthday &amp; Anniversary Reminder" sap:VirtualizedContainerService.HintSize="229.6,68.8" sap2010:WorkflowViewState.IdRef="Sequence_21">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:String" Default="[system.IO.directory.GetCurrentDirectory + &quot;\downloads\&quot; + this_region]" Name="excel_file_folder" />
                 <Variable x:TypeArguments="x:String" Name="excel_file_path_full" />

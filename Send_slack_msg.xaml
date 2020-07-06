@@ -64,6 +64,7 @@
   <Flowchart DisplayName="Send_slack_msg" sap:VirtualizedContainerService.HintSize="633.6,636.8" sap2010:WorkflowViewState.IdRef="Flowchart_1">
     <Flowchart.Variables>
       <Variable x:TypeArguments="x:String" Name="slack_bot_token" />
+      <Variable x:TypeArguments="x:String" Default="slack_bot_token" Name="asset_name_slack_bot_token" />
     </Flowchart.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -178,7 +179,7 @@
           <av:PointCollection x:Key="ConnectorLocation">300,148.1 300,197.7</av:PointCollection>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="slack_bot_token" DisplayName="Get Asset" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+      <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="[asset_name_slack_bot_token]" DisplayName="Get Asset" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
         <ui:GetRobotAsset.Value>
           <OutArgument x:TypeArguments="x:String">[slack_bot_token]</OutArgument>
         </ui:GetRobotAsset.Value>
