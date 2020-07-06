@@ -4,9 +4,8 @@
 
 > A UiPath robot to help send reminder for public holiday, employee anniversary and employee birthday
 
-***Workflow***
-
----
+## Workflow
+<a href="https://github.com/uipath-shareable/HooRay/blob/master/Workflow.jpeg"><img src="https://github.com/uipath-shareable/HooRay/blob/master/Workflow.jpeg"></a>
 
 ## Pre-requisite
 
